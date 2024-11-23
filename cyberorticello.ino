@@ -10,7 +10,7 @@
 #define PIN_SENSORE_UMIDITA_TERRAA A0
 #define ACCENSIONE_SENSORE_TERRA    5
 #define PIN_BOTTONE               10
-#define PIN_POMPA                 4
+#define POMPA_PIN                 4
 #define PIN_ANELLO_LED            6
 // Numero led dell'anello
 #define NUMPIXELS                 16
@@ -60,12 +60,12 @@ void setup() {
   // inizializzazione pin
   pinMode(PIN_BOTTONE, INPUT_PULLUP);
   pinMode(PIN_SENSORE_UMIDITA_TERRAD, INPUT);
-  pinMode(PIN_POMPA, OUTPUT);
+  pinMode(POMPA_PIN, OUTPUT);
   pinMode(ACCENSIONE_SENSORE_TERRA, OUTPUT);
   digitalWrite(ACCENSIONE_SENSORE_TERRA, LOW);
   
   // la pompa funziona al contrario, HIGH significa spento
-  digitalWrite(PIN_POMPA, HIGH);
+  digitalWrite(POMPA_PIN, HIGH);
   
   // misuriamo il terreno per avere un valore
   misura_terra();
@@ -183,11 +183,11 @@ void misura_terra(){
   // se il segnale digitale del sensore del terreno è alto
   if(digitalRead(PIN_SENSORE_UMIDITA_TERRAD)==HIGH){
     // accendiamo la pompa
-    digitalWrite(PIN_POMPA, LOW);
+    digitalWrite(POMPA_PIN, LOW);
     //aspettiamo il tempo necessario
     delay(innaffiatura_time);
     //spegnamo la pompa
-    digitalWrite(PIN_POMPA, HIGH);
+    digitalWrite(POMPA_PIN, HIGH);
   }
   
   //spegnamo il sensore
