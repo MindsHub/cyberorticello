@@ -58,7 +58,7 @@ void setup() {
   anello_led.setBrightness(10); //Si regola la luminosità
 
   // inizializzazione pin
-  pinMode(PIN_BOTTONE, INPUT);
+  pinMode(PIN_BOTTONE, INPUT_PULLUP);
   pinMode(PIN_SENSORE_UMIDITA_TERRAD, INPUT);
   pinMode(PIN_POMPA, OUTPUT);
   pinMode(ACCENSIONE_SENSORE_TERRA, OUTPUT);
@@ -106,7 +106,7 @@ void loop()
         // se abbiamo visualizzato il valore per troppo tempo
         if (millis()-start>max_display_time){
           //impostiamo lo stato a 0, e finiamo il loop
-          stato_programma=0;
+          stato_programma=4;
           return;
         }
         // visualizziamo il valore della temperatura sull'anello led in rosso
@@ -126,7 +126,7 @@ void loop()
         // se abbiamo visualizzato il valore per troppo tempo
         if (millis()-start>max_display_time){
           //impostiamo lo stato a 0, e finiamo il loop
-          stato_programma=0;
+          stato_programma=4;
           return;
         }
         // visualizziamo il valore dell'umidità sull'anello led in blu
@@ -151,7 +151,7 @@ void loop()
       // se abbiamo visualizzato il valore per troppo tempo
         if (millis()-start>max_display_time){
           //impostiamo lo stato a 0, e finiamo il loop
-          stato_programma=0;
+          stato_programma=4;
           return;
         }
         // visualizza il valore dell'umidità del terreno in verde, 1 pixel= secco completo, 16 pixel = molto umido
