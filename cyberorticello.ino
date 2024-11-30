@@ -16,8 +16,9 @@
 #define NUMPIXELS                 16
 
 // valori di configurazione del umidità del terreno
-#define TERRENO_COMPLETAMENTE_UMIDO 580
-#define TERRENO_COMPLETAMENTE_SECCO 1006
+#define TERRENO_COMPLETAMENTE_UMIDO 637
+#define PERCENTUALE_UMIDITA_ACQUA 30
+#define TERRENO_COMPLETAMENTE_SECCO 958
 
 // stato iniziale del programma
 int stato_programma=0;
@@ -180,8 +181,11 @@ void misura_terra(){
   // imposto il tempo dell'ultima misurazione al tempo corrente
   tempo_ultima_misura=millis();
 
+  // calcoliamo il valore dell'umidità del terreno in base ai valori di calibrazione
+  int valore =  map(umidita_terreno, TERRENO_COMPLETAMENTE_UMIDO, TERRENO_COMPLETAMENTE_SECCO, 100, 0);
+    
   // se il segnale digitale del sensore del terreno è alto
-  if(digitalRead(PIN_SENSORE_UMIDITA_TERRAD)==HIGH){
+  if(valore<PERCENTUALE_UMIDITA_ACQUA){
     // accendiamo la pompa
     digitalWrite(POMPA_PIN, LOW);
     //aspettiamo il tempo necessario
